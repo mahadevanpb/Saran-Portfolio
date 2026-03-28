@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO & Copywriting — Saran Kumar KC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Same CSS as index.html - embedded for Netlify compatibility */
+        :root {
+            --ink: #0d0d0d;
+            --ink-mid: #1a1a1a;
+            --off-white: #f4f0e8;
+            --warm-gray: #e8e4dc;
+            --accent: #d4531a;
+            --accent2: #1a4d3e;
+            --accent3: #c9a84c;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        #cur {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.12s;
+        }
+
+        #curl {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 56px;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(244, 240, 232, 0.07);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            color: var(--off-white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(244, 240, 232, 0.55);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .port-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+
+        .port-heading.light {
+            color: var(--off-white);
+        }
+
+        .port-intro {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 400;
+            margin-bottom: 48px;
+            max-width: 580px;
+        }
+
+        .port-intro.light {
+            color: rgba(244, 240, 232, 0.75);
+        }
+
+        .port-intro.light strong {
+            color: var(--off-white);
+        }
+
+        .port-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .port-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(244, 240, 232, 0.1);
+            font-size: 0.9rem;
+            color: rgba(244, 240, 232, 0.78);
+            line-height: 1.65;
+            display: flex;
+            gap: 12px;
+        }
+
+        .port-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .card {
+            background: rgba(244, 240, 232, 0.06);
+            border: 1px solid rgba(244, 240, 232, 0.12);
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            background: rgba(244, 240, 232, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--off-white);
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 0.86rem;
+            color: rgba(244, 240, 232, 0.68);
+            line-height: 1.65;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(244, 240, 232, 0.1);
+            color: var(--off-white);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: background 0.2s, transform 0.2s;
+            border: 1px solid rgba(244, 240, 232, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(244, 240, 232, 0.2);
+            transform: translateX(-4px);
+        }
+
+        .notion-btn-wrap {
+            margin-top: 56px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notion-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 44px;
+            background: linear-gradient(135deg, var(--accent) 0%, #b8440f 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.22s, box-shadow 0.22s;
+            box-shadow: 0 4px 28px rgba(212, 83, 26, 0.35);
+            border: none;
+        }
+
+        .notion-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 40px rgba(212, 83, 26, 0.55);
+        }
+
+        .notion-btn svg {
+            flex-shrink: 0;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .work-card {
+            border: 1px solid rgba(244, 240, 232, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.25s;
+            background: rgba(244, 240, 232, 0.05);
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .work-card-content {
+            padding: 15px;
+        }
+
+        .work-card-content h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            color: var(--off-white);
+        }
+
+        .work-card-content p {
+            font-size: 0.85rem;
+            color: rgba(244, 240, 232, 0.6);
+            margin: 0 0 10px 0;
+        }
+
+        .work-card-content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .case-container {
+            min-height: 100vh;
+            background: var(--ink-mid);
+            padding: 100px 10vw;
+        }
+
+        @media (max-width: 860px) {
+            nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .case-container {
+                padding: 80px 5vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="curl"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">SARAN KC</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#my-work">Work</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="case-container">
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+        <h1 class="port-heading light">seo.</h1>
+        <p class="port-intro light">Led organic growth and SEO initiatives for a multi-client portfolio at HighBizz —
+            spanning travel, real estate, education, lifestyle, and construction sectors.</p>
+
+        <ul class="port-list">
+            <li>Keyword opportunity analysis and competitor benchmarking to surface high-intent content gaps</li>
+            <li>On-page SEO and content optimisation using WordPress, Yoast, and Rank Math</li>
+            <li>Search performance monitoring via Google Search Console and GA4</li>
+            <li>SEO dashboards built using SEMrush, Google Ads Keyword Planner, and AI tools</li>
+            <li>Email marketing for Aster Holiday & Aster Travel — newsletters, subject-line optimisation, scheduling
+            </li>
+        </ul>
+
+        <div class="card">
+            <h4>Clients Managed</h4>
+            <p style="font-size: 1rem; color: var(--off-white);">Space Technique · Palagiri Construction · Pruthvi
+                Projects · Geown Properties · Aster Travel · Aster Holiday</p>
+        </div>
+
+        <div class="card">
+            <h4>📈 Engagement Overview</h4>
+            <p>Supported design and execution of organic growth strategies for clients in early and mid-stage SEO
+                maturity — requiring structured groundwork, performance monitoring, and scalable optimisation
+                frameworks.</p>
+        </div>
+
+        <div class="card">
+            <h4>✅ Key Outcomes</h4>
+            <ul class="port-list" style="margin: 0; border: none;">
+                <li style="border: none; padding: 8px 0;">Improved search visibility and indexing consistency across all
+                    client sites</li>
+                <li style="border: none; padding: 8px 0;">Strong on-page SEO foundations established for long-term
+                    organic growth</li>
+                <li style="border: none; padding: 8px 0;">Reduced technical SEO inefficiencies through structured
+                    monitoring</li>
+                <li style="border: none; padding: 8px 0;">Delivered a repeatable SEO model applicable across multiple
+                    industries</li>
+            </ul>
+        </div>
+
+        <div class="notion-btn-wrap">
+            <a href="https://www.notion.so/SEO-d3ba57b8526b83da9b368138652070f9" target="_blank" class="notion-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933l3.222-.187z"
+                        fill="white" />
+                </svg>
+                View Full SEO Portfolio on Notion ↗
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cur');
+        const cursorL = document.getElementById('curl');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorL.style.left = e.clientX - 11 + 'px';
+            cursorL.style.top = e.clientY - 11 + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+            cursorL.style.transform = 'scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorL.style.transform = 'scale(1)';
+        });
+        const interactiveElements = document.querySelectorAll('a, .work-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursorL.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorL.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>

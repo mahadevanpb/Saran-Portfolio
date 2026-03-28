@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media — Saran Kumar KC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Same CSS as index.html - embedded for Netlify compatibility */
+        :root {
+            --ink: #0d0d0d;
+            --ink-mid: #1a1a1a;
+            --off-white: #f4f0e8;
+            --warm-gray: #e8e4dc;
+            --accent: #d4531a;
+            --accent2: #1a4d3e;
+            --accent3: #c9a84c;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        #cur {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.12s;
+        }
+
+        #curl {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 56px;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(244, 240, 232, 0.07);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            color: var(--off-white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(244, 240, 232, 0.55);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .port-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+
+        .port-heading.light {
+            color: var(--off-white);
+        }
+
+        .port-intro {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 400;
+            margin-bottom: 48px;
+            max-width: 580px;
+        }
+
+        .port-intro.light {
+            color: rgba(244, 240, 232, 0.75);
+        }
+
+        .port-intro.light strong {
+            color: var(--off-white);
+        }
+
+        .port-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .port-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(244, 240, 232, 0.1);
+            font-size: 0.9rem;
+            color: rgba(244, 240, 232, 0.78);
+            line-height: 1.65;
+            display: flex;
+            gap: 12px;
+        }
+
+        .port-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 14px 18px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 2px solid rgba(212, 83, 26, 0.6);
+            background: rgba(212, 83, 26, 0.08);
+        }
+
+        .data-table td {
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(244, 240, 232, 0.08);
+            color: rgba(244, 240, 232, 0.82);
+            line-height: 1.5;
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: var(--off-white);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(212, 83, 26, 0.08);
+        }
+
+        .data-table {
+            background: rgba(244, 240, 232, 0.04);
+            border: 1px solid rgba(244, 240, 232, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(244, 240, 232, 0.1);
+            color: var(--off-white);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: background 0.2s, transform 0.2s;
+            border: 1px solid rgba(244, 240, 232, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(244, 240, 232, 0.2);
+            transform: translateX(-4px);
+        }
+
+        .notion-btn-wrap {
+            margin-top: 56px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notion-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 44px;
+            background: linear-gradient(135deg, var(--accent) 0%, #b8440f 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.22s, box-shadow 0.22s;
+            box-shadow: 0 4px 28px rgba(212, 83, 26, 0.35);
+            border: none;
+        }
+
+        .notion-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 40px rgba(212, 83, 26, 0.55);
+        }
+
+        .notion-btn svg {
+            flex-shrink: 0;
+        }
+
+        .case-container {
+            min-height: 100vh;
+            background: var(--ink);
+            padding: 100px 10vw;
+        }
+
+        @media (max-width: 860px) {
+            nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .case-container {
+                padding: 80px 5vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="curl"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">SARAN KC</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#my-work">Work</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="case-container">
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+        <h1 class="port-heading light">social media.</h1>
+        <p class="port-intro light">Independently managed the complete social media lifecycle for multiple clients at
+            HighBizz — from strategy creation to full execution across travel, real estate, hospitality, construction,
+            and wellness sectors.</p>
+
+        <ul class="port-list">
+            <li>Developed monthly content calendars for multiple clients</li>
+            <li>Ideated creative post concepts and reel ideas for maximum organic reach</li>
+            <li>Executed end-to-end: reels, captions, hashtag research, post scheduling</li>
+            <li>Managed posting across Instagram, Facebook, and LinkedIn</li>
+            <li>Optimised content based on early engagement signals and trend analysis</li>
+            <li>Grew accounts from zero — building brand presence organically</li>
+        </ul>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Result (Organic)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Instagram Followers</td>
+                    <td>50–200 per client in 4 months</td>
+                </tr>
+                <tr>
+                    <td>Avg Reel Views</td>
+                    <td>100–600 per reel</td>
+                </tr>
+                <tr>
+                    <td>Avg Post Engagement</td>
+                    <td>5–20 likes & comments</td>
+                </tr>
+                <tr>
+                    <td>Content Volume</td>
+                    <td>15–25 posts · 8–10 reels / month</td>
+                </tr>
+                <tr>
+                    <td>Reach & Impressions</td>
+                    <td>30–50% growth month-on-month</td>
+                </tr>
+                <tr>
+                    <td>Top Performing Reel</td>
+                    <td>5K+ views organically</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="notion-btn-wrap">
+            <a href="https://www.notion.so/Social-Media-creative-s-51ea57b8526b829b9547019765c0feb2" target="_blank"
+                class="notion-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933l3.222-.187z"
+                        fill="white" />
+                </svg>
+                View Full Social Media Portfolio on Notion ↗
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cur');
+        const cursorL = document.getElementById('curl');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorL.style.left = e.clientX - 11 + 'px';
+            cursorL.style.top = e.clientY - 11 + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+            cursorL.style.transform = 'scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorL.style.transform = 'scale(1)';
+        });
+        const interactiveElements = document.querySelectorAll('a, .work-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursorL.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorL.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
