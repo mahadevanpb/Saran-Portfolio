@@ -308,22 +308,39 @@
             padding: 100px 10vw;
         }
 
+        /* ── Hamburger ── */
+        .hamburger {
+            display: none; flex-direction: column; justify-content: center; gap: 5px;
+            background: none; border: none; cursor: none; padding: 6px; z-index: 201;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px; background: var(--off-white);
+            border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu {
+            display: none; position: fixed; inset: 0; z-index: 198;
+            background: rgba(13, 13, 13, 0.98); flex-direction: column;
+            align-items: center; justify-content: center; gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+            color: var(--off-white); text-decoration: none; letter-spacing: 0.08em;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--accent); }
+        .mobile-menu .mob-divider {
+            width: 40px; height: 1px; background: rgba(212, 83, 26, 0.4);
+        }
         @media (max-width: 860px) {
-            nav {
-                padding: 14px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .case-container {
-                padding: 80px 5vw;
-            }
-
-            .card {
-                padding: 20px 18px;
-            }
+            nav { padding: 14px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .case-container { padding: 80px 5vw; }
+            .card { padding: 20px 18px; }
         }
 
         @media (max-width: 480px) {
@@ -357,6 +374,21 @@
                 padding: 18px 14px;
             }
         }
+        /* ── Case study animations ── */
+        @keyframes caseIn { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+        .case-container { animation: caseIn 0.7s ease 0.15s both; }
+        .port-list li { opacity:0; transform:translateX(-20px); transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s; }
+        .port-list li.in { opacity:1; transform:translateX(0); }
+        .card { opacity:0; transform:translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s; }
+        .card.in { opacity:1; transform:translateY(0); }
+        @keyframes notionPulse {
+            0%,100%{ box-shadow:0 4px 28px rgba(212,83,26,0.35); }
+            50%{ box-shadow:0 8px 52px rgba(212,83,26,0.72), 0 0 0 5px rgba(212,83,26,0.12); }
+        }
+        .notion-btn { animation: notionPulse 2.6s ease-in-out infinite; }
+        .ripple { position:absolute; border-radius:50%; background:rgba(255,255,255,0.22);
+            transform:scale(0); animation:rippleAnim 0.65s linear forwards; pointer-events:none; }
+        @keyframes rippleAnim { to{ transform:scale(4); opacity:0; } }
     </style>
 </head>
 
@@ -372,7 +404,18 @@
             <li><a href="index.html#skills">Skills</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
+        <button class="hamburger" id="ham" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+    <div class="mobile-menu" id="mob-menu">
+        <a href="index.html">Portfolio</a>
+        <div class="mob-divider"></div>
+        <a href="index.html#about">About</a>
+        <a href="index.html#my-work">Work</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
 
     <div class="case-container">
         <a href="index.html" class="back-btn">← Back to Portfolio</a>
@@ -446,6 +489,31 @@
             cursor.style.transform = 'scale(1)';
             cursorL.style.transform = 'scale(1)';
         });
+        /* ── Case study animations ── */
+        const listObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('li').forEach((li, i) => setTimeout(() => li.classList.add('in'), i * 70));
+                    listObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.port-list').forEach(el => listObs.observe(el));
+        const cardObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.card').forEach(el => cardObs.observe(el));
+        document.querySelectorAll('.notion-btn').forEach(btn => {
+            btn.style.position = 'relative'; btn.style.overflow = 'hidden';
+            btn.addEventListener('click', e => {
+                const r = btn.getBoundingClientRect();
+                const sz = Math.max(btn.offsetWidth, btn.offsetHeight) * 2;
+                const rip = document.createElement('span');
+                rip.className = 'ripple';
+                rip.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-r.left-sz/2}px;top:${e.clientY-r.top-sz/2}px;position:absolute;`;
+                btn.appendChild(rip); setTimeout(() => rip.remove(), 700);
+            });
+        });
         const interactiveElements = document.querySelectorAll('a, .work-card');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -457,6 +525,16 @@
                 cursorL.style.transform = 'scale(1)';
             });
         });
+        /* Hamburger menu */
+        const ham = document.getElementById('ham');
+        const mobMenu = document.getElementById('mob-menu');
+        function toggleMenu(open) {
+            ham.classList.toggle('open', open);
+            mobMenu.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        ham.addEventListener('click', () => toggleMenu(!mobMenu.classList.contains('open')));
+        mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
     </script>
 </body>
 
