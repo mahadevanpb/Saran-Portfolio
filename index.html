@@ -532,10 +532,68 @@
         .t-item { grid-template-columns: 50px 1fr; gap: 16px; }
         .timeline::before { left: 50px; }
         .footer-sub { font-size: 0.95rem; }
+        /* ═══════════════ ANIMATIONS ═══════════════ */
+        /* Scroll progress bar */
+        #scroll-prog {
+        position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+        background: linear-gradient(90deg, var(--accent), #ff8c42, var(--accent));
+        background-size: 200% 100%;
+        animation: progressShimmer 2s linear infinite;
+        z-index: 99999; transition: width 0.1s linear;
+        box-shadow: 0 0 12px rgba(212,83,26,0.85);
+        will-change: width; isolation: isolate;
+        pointer-events: none;
         }
+        @keyframes progressShimmer { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
+        /* Divider running-light */
+        .divider-stripe {
+        background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 20px, var(--ink) 20px, var(--ink) 40px);
+        animation: dividerRun 1.4s linear infinite;
+        background-size: 40px 100%;
+        }
+        @keyframes dividerRun { to { background-position: 40px 0; } }
+        /* Typewriter blink on subtitle */
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .hero-subtitle::after { content:'|'; color:var(--accent); animation:blink 0.85s step-end infinite; margin-left:2px; }
+        /* Ripple on click */
+        .ripple {
+        position:absolute; border-radius:50%; background:rgba(255,255,255,0.22);
+        transform:scale(0); animation:rippleAnim 0.65s linear forwards; pointer-events:none;
+        }
+        @keyframes rippleAnim { to{ transform:scale(4); opacity:0; } }
+        /* Cursor trail dot */
+        .c-trail {
+        position:fixed; border-radius:50%; background:var(--accent);
+        pointer-events:none; z-index:9990; transform:translate(-50%,-50%);
+        }
+        /* Tag stagger */
+        .tag { opacity:0; transform:translateY(10px); }
+        .tag { transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, border-color 0.2s, color 0.2s; }
+        .tag.in { opacity:1; transform:translateY(0); }
+        /* Cert list stagger */
+        .cert-list li { opacity:0; transform:translateX(-18px); transition:opacity 0.45s ease, transform 0.45s ease, border-color 0.2s; }
+        .cert-list li.in { opacity:1; transform:translateX(0); }
+        /* Award list stagger */
+        .award-list li { opacity:0; transform:translateY(22px); transition:opacity 0.5s ease, transform 0.5s ease, border-color 0.2s; }
+        .award-list li.in { opacity:1; transform:translateY(0); }
+        /* Notion btn pulse */
+        @keyframes notionPulse {
+        0%,100%{ box-shadow:0 4px 28px rgba(212,83,26,0.35); }
+        50%{ box-shadow:0 8px 52px rgba(212,83,26,0.72), 0 0 0 5px rgba(212,83,26,0.12); }
+        }
+        .notion-btn { animation: notionPulse 2.6s ease-in-out infinite; }
+        /* Hero glow breathe */
+        .hero-glow { animation: floatGlow 8s ease-in-out infinite alternate, breatheGlow 4s ease-in-out infinite; }
+        @keyframes breatheGlow {
+        0%,100%{ opacity:0.18; } 50%{ opacity:0.28; }
+        }
+        /* Work card reveal */
+        .work-card-anim { opacity:0; transform:translateY(28px); transition:opacity 0.5s ease, transform 0.5s ease, background 0.2s, border-color 0.2s; }
+        .work-card-anim.in { opacity:1; transform:translateY(0); }
     </style>
 </head>
 <body>
+    <div id="scroll-prog"></div>
     <div id="cur"></div>
     <div id="curl"></div>
 
@@ -564,7 +622,7 @@
         <div class="hero-stripes"></div>
         <div class="hero-glow"></div>
         <div class="hero-inner">
-            <div class="hero-eyebrow">Marketing Portfolio · 2025</div>
+            <div class="hero-eyebrow">Marketing Portfolio</div>
             <h1 class="hero-title">SARAN <span>KC</span></h1>
             <p class="hero-subtitle">marketing portfolio — seo · content · social media</p>
             <div class="hero-name">Saran Kumar KC</div>
@@ -585,7 +643,7 @@
             <div class="about-quote">"Every piece of content is a test of attention, relevance, and connection."</div>
             <div class="about-body">
                 <p>I work across SEO, content, and social media, shaping ideas into digital content that people actually engage with. From reel ideation and brand storytelling to organic growth and search optimization.</p>
-                <p>Currently pursuing my <strong>MBA in Marketing</strong> at Alliance Ascent College, Bengaluru — building on real internship experience at HighBizz managing multi-client digital campaigns.</p>
+                <p>Graduated with my <strong>MBA in Marketing</strong> from Alliance Ascent College, Bengaluru — currently working at HighBizz managing multi-client digital campaigns across SEO, content, and social media.</p>
                 <p>When I'm not clocked in, you'll find me at the volleyball court, volunteering at events, or deep in a content rabbit hole.</p>
             </div>
         </div>
@@ -594,7 +652,7 @@
                 <span class="icon">💼</span>
                 <div class="info">
                     <strong>Current Role</strong>
-                    Digital Marketing Intern · HighBizz
+                    Digital Marketing Manager · HighBizz
                 </div>
             </div>
             <div class="about-card">
@@ -636,23 +694,23 @@
             </div>
         </div>
         <div class="work-nav reveal">
-            <a href="content-creation.html" class="work-card">
+            <a href="content-creation.html" class="work-card work-card-anim">
                 <span class="wc-icon">🎬</span>
                 <span class="wc-label">Content Creation</span>
             </a>
-            <a href="seo.html" class="work-card">
+            <a href="seo.html" class="work-card work-card-anim">
                 <span class="wc-icon">🔍</span>
                 <span class="wc-label">SEO</span>
             </a>
-            <a href="social-media.html" class="work-card">
+            <a href="social-media.html" class="work-card work-card-anim">
                 <span class="wc-icon">📱</span>
                 <span class="wc-label">Social Media</span>
             </a>
-            <a href="#skills" class="work-card">
+            <a href="#skills" class="work-card work-card-anim">
                 <span class="wc-icon">⚙️</span>
                 <span class="wc-label">Skills & Certs</span>
             </a>
-            <a href="#education" class="work-card">
+            <a href="#education" class="work-card work-card-anim">
                 <span class="wc-icon">🎓</span>
                 <span class="wc-label">Education</span>
             </a>
@@ -815,6 +873,141 @@
         }
         ham.addEventListener('click', () => toggleMenu(!mobMenu.classList.contains('open')));
         mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+        /* ═══════════ ENHANCED ANIMATIONS ═══════════ */
+        /* 1. Scroll progress bar */
+        const prog = document.getElementById('scroll-prog');
+        function updateProgress() {
+            const scrolled = window.scrollY || document.documentElement.scrollTop;
+            const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            prog.style.width = Math.min((scrolled / total) * 100, 100) + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress, { passive: true });
+        updateProgress();
+
+        /* 2. Hero title scramble */
+        const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!';
+        function scramble(el, final, delay) {
+            setTimeout(() => {
+                let iter = 0;
+                const total = final.length * 3;
+                const iv = setInterval(() => {
+                    el.innerHTML = final.split('').map((ch, i) => {
+                        if (ch === ' ') return ' ';
+                        if (i < iter / 2.8) return ch === 'K' && final[i+1] === 'C' ? ch :
+                            ch === 'C' && final[i-1] === 'K' ? `<span style="color:var(--accent)">${ch}</span>` : ch;
+                        return `<span style="opacity:.35">${CHARS[Math.floor(Math.random()*CHARS.length)]}</span>`;
+                    }).join('');
+                    if (++iter > total) { clearInterval(iv); el.innerHTML = 'SARAN <span>KC</span>'; }
+                }, 30);
+            }, delay);
+        }
+        scramble(document.querySelector('.hero-title'), 'SARAN KC', 600);
+
+        /* 3. Cursor particle trail */
+        const trailDots = [];
+        for (let i = 0; i < 7; i++) {
+            const d = document.createElement('div');
+            d.className = 'c-trail';
+            const s = (6 - i * 0.6);
+            d.style.cssText = `width:${s}px;height:${s}px;opacity:${0.55 - i * 0.07};transition:left ${0.06 + i*0.04}s,top ${0.06+i*0.04}s;`;
+            document.body.appendChild(d);
+            trailDots.push(d);
+        }
+        let mx = 0, my = 0;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+        function animTrail() {
+            trailDots.forEach(d => { d.style.left = mx + 'px'; d.style.top = my + 'px'; });
+            requestAnimationFrame(animTrail);
+        }
+        animTrail();
+
+        /* 4. Magnetic buttons */
+        document.querySelectorAll('.hero-btn, .cpill').forEach(btn => {
+            btn.style.position = 'relative'; btn.style.overflow = 'hidden';
+            btn.addEventListener('mousemove', e => {
+                const r = btn.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) * 0.2;
+                const y = (e.clientY - r.top - r.height / 2) * 0.2;
+                btn.style.translate = `${x}px ${y}px`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transition = 'translate 0.5s cubic-bezier(0.23,1,0.32,1), background 0.2s, transform 0.2s';
+                btn.style.translate = '';
+            });
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transition = 'translate 0.12s ease, background 0.2s, transform 0.2s';
+            });
+            btn.addEventListener('click', e => {
+                const r = btn.getBoundingClientRect();
+                const sz = Math.max(btn.offsetWidth, btn.offsetHeight) * 2;
+                const rip = document.createElement('span');
+                rip.className = 'ripple';
+                rip.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-r.left-sz/2}px;top:${e.clientY-r.top-sz/2}px;position:absolute;`;
+                btn.appendChild(rip);
+                setTimeout(() => rip.remove(), 700);
+            });
+        });
+
+        /* 5. Tag stagger on scroll */
+        const tagObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.tag').forEach((t, i) => setTimeout(() => t.classList.add('in'), i * 55));
+                    tagObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.tags').forEach(el => tagObs.observe(el));
+
+        /* 6. Cert list stagger */
+        const certObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('li').forEach((li, i) => setTimeout(() => li.classList.add('in'), i * 90));
+                    certObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.cert-list').forEach(el => certObs.observe(el));
+
+        /* 7. Award list stagger */
+        const awardObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('li').forEach((li, i) => setTimeout(() => li.classList.add('in'), i * 100));
+                    awardObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.award-list').forEach(el => awardObs.observe(el));
+
+        /* 8. Work card stagger */
+        const wcObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.work-card-anim').forEach((c, i) => setTimeout(() => c.classList.add('in'), i * 80));
+                    wcObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.work-nav').forEach(el => wcObs.observe(el));
+
+        /* 9. Nav logo glitch on hover */
+        const navLogo = document.querySelector('.nav-logo');
+        if (navLogo) {
+            navLogo.addEventListener('mouseenter', () => {
+                let i = 0;
+                const orig = navLogo.textContent;
+                const iv = setInterval(() => {
+                    navLogo.textContent = orig.split('').map((c, j) =>
+                        j < i / 1.5 ? c : (Math.random() > 0.5 ? CHARS[Math.floor(Math.random()*CHARS.length)] : c)
+                    ).join('');
+                    if (++i > orig.length * 1.5) { clearInterval(iv); navLogo.textContent = orig; }
+                }, 40);
+            });
+        }
     </script>
 </body>
 </html>
