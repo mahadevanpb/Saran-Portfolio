@@ -91,7 +91,7 @@
         }
         .hero-title {
         font-family: 'Bebas Neue', sans-serif;
-        font-size: clamp(7rem, 18vw, 16rem); color: var(--off-white);
+        font-size: clamp(3.5rem, 18vw, 16rem); color: var(--off-white);
         line-height: 0.88; letter-spacing: 0.02em;
         animation: fadeUp 0.8s ease 0.3s both;
         }
@@ -469,18 +469,69 @@
         .back-btn.dark:hover {
         background: rgba(13, 13, 13, 0.2); transform: translateX(-4px);
         }
+        /* ── Hamburger ── */
+        .hamburger {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        background: none; border: none; cursor: pointer; padding: 6px; z-index: 201;
+        }
+        .hamburger span {
+        display: block; width: 24px; height: 2px; background: var(--off-white);
+        border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu {
+        display: none; position: fixed; inset: 0; z-index: 198;
+        background: rgba(13, 13, 13, 0.98); flex-direction: column;
+        align-items: center; justify-content: center; gap: 36px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+        font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+        color: var(--off-white); text-decoration: none; letter-spacing: 0.08em;
+        transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--accent); }
+        /* ── Responsive ── */
         @media (max-width: 1200px) { .ig-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 760px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .ig-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 760px)  { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 860px) {
         nav { padding: 14px 20px; }
         .nav-links { display: none; }
+        .hamburger { display: flex; }
+        #about { padding: 80px 5vw; }
+        #my-work { padding: 80px 5vw; }
+        #skills { padding: 80px 5vw; }
+        #education { padding: 80px 5vw; }
+        #awards { padding: 80px 5vw; }
+        #contact { padding: 80px 5vw 48px; }
         #about, .two-col, .skills-grid { grid-template-columns: 1fr; gap: 40px; }
         .timeline::before { left: 60px; }
         .t-item { grid-template-columns: 60px 1fr; }
         .metrics { grid-template-columns: 1fr 1fr; }
-        .work-card { min-width: 120px; }
+        .work-nav { gap: 12px; }
+        .work-card { min-width: calc(50% - 6px); flex: 0 1 calc(50% - 6px); padding: 24px 14px; }
         .work-top { flex-direction: column; align-items: flex-start; gap: 24px; }
+        .contact-row { gap: 10px; }
+        }
+        @media (max-width: 480px) {
+        .ig-grid { grid-template-columns: 1fr; }
+        .hero-eyebrow { font-size: 0.58rem; letter-spacing: 0.18em; }
+        .hero-subtitle { font-size: 0.9rem; }
+        .hero-name { font-size: 0.68rem; }
+        .hero-btn { padding: 12px 24px; margin-top: 28px; font-size: 0.72rem; }
+        .footer-heading { font-size: clamp(2rem, 14vw, 7rem); }
+        .contact-row { flex-direction: column; align-items: stretch; }
+        .cpill { justify-content: center; }
+        .about-card { padding: 14px 16px; }
+        .metrics { grid-template-columns: 1fr; }
+        .work-card { min-width: 100%; flex: 1 1 100%; }
+        .tag { padding: 6px 12px; font-size: 0.72rem; }
+        .award-list li { padding: 16px 0; font-size: 0.88rem; }
+        .t-item { grid-template-columns: 50px 1fr; gap: 16px; }
+        .timeline::before { left: 50px; }
+        .footer-sub { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -497,7 +548,17 @@
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="hamburger" id="ham" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+    <div class="mobile-menu" id="mob-menu">
+        <a href="#about">About</a>
+        <a href="#my-work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <section id="hero">
         <div class="hero-stripes"></div>
@@ -507,7 +568,7 @@
             <h1 class="hero-title">SARAN <span>KC</span></h1>
             <p class="hero-subtitle">marketing portfolio — seo · content · social media</p>
             <div class="hero-name">Saran Kumar KC</div>
-            <a href="#about" class="hero-btn">View My Work ↓</a>
+            <a href="#my-work" class="hero-btn">View My Work ↓</a>
         </div>
         <div class="scroll-indicator">
             <span>scroll</span>
@@ -574,7 +635,6 @@
                 <h2 class="work-heading">my <em>work</em></h2>
             </div>
         </div>
-        <p class="port-intro dark" style="margin-bottom: 40px;">Click any category to view the full case study ↓</p>
         <div class="work-nav reveal">
             <a href="content-creation.html" class="work-card">
                 <span class="wc-icon">🎬</span>
@@ -745,6 +805,16 @@
         document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .t-item').forEach(el => {
             observer.observe(el);
         });
+        /* Hamburger menu */
+        const ham = document.getElementById('ham');
+        const mobMenu = document.getElementById('mob-menu');
+        function toggleMenu(open) {
+            ham.classList.toggle('open', open);
+            mobMenu.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        ham.addEventListener('click', () => toggleMenu(!mobMenu.classList.contains('open')));
+        mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
     </script>
 </body>
 </html>
