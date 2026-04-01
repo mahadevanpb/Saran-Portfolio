@@ -23,24 +23,27 @@
    - [Data Table](#data-table)
    - [Notion Button](#notion-button)
 6. [Animation System](#6-animation-system)
-   - [index.html Animations](#indexhtml-animations)
-   - [Case Study Page Animations](#case-study-page-animations)
-7. [Page-Specific Styles](#7-page-specific-styles)
+7. [Page-Specific Styles & Content](#7-page-specific-styles--content)
+   - [index.html — Sections](#indexhtml--sections)
+   - [clients.html](#clientshtml)
+   - [case-studies.html](#case-studieshtml)
 8. [JavaScript Behaviour](#8-javascript-behaviour)
 9. [External Links & Integrations](#9-external-links--integrations)
 10. [Responsive Breakpoints](#10-responsive-breakpoints)
-11. [Deployment Notes](#11-deployment-notes)
+11. [Changelog](#11-changelog)
+12. [Deployment Notes](#12-deployment-notes)
 
 ---
 
 ## 1. Project Overview
 
-A static HTML/CSS/JS personal marketing portfolio for **Saran Kumar KC**, a Digital Marketing professional. The site showcases three main areas of work — Content Creation, SEO & Copywriting, and Social Media Management — with dedicated case study pages for each.
+A static HTML/CSS/JS personal marketing portfolio for **Saran Kumar KC**, a Digital Marketing Executive. The site showcases work across Content Creation, SEO, Social Media, Client Experience, and Case Studies — with dedicated pages for each.
 
 - **Stack:** Pure HTML5, embedded CSS, vanilla JavaScript
 - **Fonts:** Google Fonts (loaded via CDN)
 - **No build step required** — open `index.html` directly in a browser
-- **Deployment:** Netlify-compatible (all styles embedded in each file for full portability)
+- **Deployment:** GitHub Pages / Netlify-compatible (all styles embedded in each file for full portability)
+- **Live site:** `https://mahadevanpb.github.io/Saran-Portfolio/index.html`
 
 ---
 
@@ -48,15 +51,31 @@ A static HTML/CSS/JS personal marketing portfolio for **Saran Kumar KC**, a Digi
 
 ```
 Saran Port/
-├── index.html              # Main portfolio homepage (single-page)
+├── index.html              # Main portfolio homepage
+├── clients.html            # Client Experience page (9 brands) — NEW
+├── case-studies.html       # Case Studies page (4 expandable studies) — NEW
 ├── content-creation.html   # Case study: Content Creation at HighBizz
 ├── seo.html                # Case study: SEO & Copywriting at HighBizz
 ├── social-media.html       # Case study: Social Media Management at HighBizz
-├── desc.md                 # Personal description / notes (not linked publicly)
+├── images/                 # Local logo assets — NEW
+│   ├── aster-holidays.png
+│   ├── aster-travel.png
+│   ├── arigato-wellness.svg
+│   ├── geown-properties.png
+│   ├── mana-herbals.avif
+│   ├── pruthvi-projects.png
+│   ├── sdp-stones.webp
+│   └── venue-by-choice.png
+├── portfoliov1/            # Snapshot of original site before April 2026 update — NEW
+│   ├── index.html
+│   ├── content-creation.html
+│   ├── seo.html
+│   └── social-media.html
+├── Saran_Portfolio_LLM_Instructions.md  # LLM change instructions (internal)
 └── README.md               # This documentation file
 ```
 
-> **Note:** All CSS is embedded inside a `<style>` block within each HTML file. There is no external stylesheet. This was a deliberate choice for Netlify compatibility — each page is fully self-contained.
+> **Note:** All CSS is embedded inside a `<style>` block within each HTML file. There is no external stylesheet. This was a deliberate choice for portability — each page is fully self-contained.
 
 ---
 
@@ -66,16 +85,19 @@ Saran Port/
 
 ```
 index.html
-├── #hero         → Landing section
-├── #about        → About Me
-├── #my-work      → Work navigation cards (links to case study pages)
-│   ├── content-creation.html  → "← Back" returns to index.html#my-work
-│   ├── seo.html               → "← Back" returns to index.html#my-work
-│   └── social-media.html      → "← Back" returns to index.html#my-work
-├── #skills       → Tools & Certifications
-├── #education    → Education timeline
-├── #awards       → Achievements & Awards
-└── #contact      → Contact info & footer
+├── #hero          → Landing section
+├── #about         → About Me (+ Why Me? + My Approach blocks)
+├── #experience    → Work Experience (HighBizz + Brandstory) — NEW
+├── #my-work       → Work navigation cards
+│   ├── clients.html          → Client Experience — NEW
+│   ├── case-studies.html     → Case Studies — NEW
+│   ├── content-creation.html → "← Back" returns to index.html#my-work
+│   ├── seo.html              → "← Back" returns to index.html#my-work
+│   └── social-media.html     → "← Back" returns to index.html#my-work
+├── #skills        → Core Skills + Tools & Certifications
+├── #education     → Education timeline
+├── #awards        → Achievements & Awards
+└── #contact       → Contact info & footer
 ```
 
 ### Page-by-Page Summary
@@ -83,9 +105,20 @@ index.html
 | File | Title | Background | Purpose |
 |---|---|---|---|
 | `index.html` | Saran Kumar KC — Marketing Portfolio | Multi-section (dark/light alternating) | Full portfolio homepage |
-| `content-creation.html` | Content Creation — Saran Kumar KC | `var(--ink)` — pure dark `#0d0d0d` | Content Creation case study |
-| `seo.html` | SEO & Copywriting — Saran Kumar KC | `var(--ink-mid)` — dark `#1a1a1a` | SEO case study |
-| `social-media.html` | Social Media — Saran Kumar KC | `var(--ink)` — pure dark `#0d0d0d` | Social Media case study |
+| `clients.html` | Client Experience — Saran Kumar KC | `var(--ink-mid)` dark | 9 client brand cards with logos |
+| `case-studies.html` | Case Studies — Saran Kumar KC | `var(--ink-mid)` dark | 4 expandable case study accordions |
+| `content-creation.html` | Content Creation — Saran Kumar KC | `var(--ink)` pure dark | Content Creation case study |
+| `seo.html` | SEO & Copywriting — Saran Kumar KC | `var(--ink-mid)` dark | SEO case study |
+| `social-media.html` | Social Media — Saran Kumar KC | `var(--ink)` pure dark | Social Media case study |
+
+### Work Section Card Order (My Work)
+
+Cards appear in the following order on `index.html#my-work`:
+1. 🤝 **Clients** → `clients.html`
+2. 🔬 **Case Studies** → `case-studies.html`
+3. 🎬 **Content Creation** → `content-creation.html`
+4. 🔍 **SEO** → `seo.html`
+5. 📱 **Social Media** → `social-media.html`
 
 ---
 
@@ -118,7 +151,7 @@ Three Google Fonts are loaded on every page:
 | Font | Usage |
 |---|---|
 | **Bebas Neue** | Display headings, titles, hero text, nav logo, mobile menu links |
-| **Instrument Serif** | Decorative subtitles, pull quotes |
+| **Instrument Serif** | Decorative subtitles, pull quotes, italic accents |
 | **Syne** | Body text, nav links, labels, buttons |
 
 ### Color Usage Guide
@@ -129,6 +162,8 @@ Three Google Fonts are loaded on every page:
 | Primary CTA / arrows / accents | `var(--accent)` — `#d4531a` |
 | Text on dark bg | `var(--off-white)` or `rgba(244,240,232,0.75)` |
 | Muted text on dark bg | `rgba(244, 240, 232, 0.55)` |
+| Gold labels / secondary accent | `var(--accent3)` — `#c9a84c` |
+| Experience timeline (Brandstory) | `var(--accent3)` border |
 
 ---
 
@@ -159,13 +194,11 @@ nav {
 }
 ```
 
-**Desktop:** Logo + nav links visible.
+**Desktop nav links (index.html):** About · Experience · Work · Skills · Education · Contact
 
-**Mobile (≤860px):** Nav links hidden. A 3-line **hamburger button** (`.hamburger`) appears. Clicking it opens a **full-screen dark overlay** (`.mobile-menu`) with large Bebas Neue links.
+**Desktop nav links (clients.html, case-studies.html):** About · Experience · Work · Skills · Education · Contact (all link to `index.html#{section}`)
 
-Mobile menu on case study pages includes:
-- **Portfolio** → `index.html`
-- **About / Work / Skills / Contact** → `index.html#{section}`
+**Mobile (≤860px):** Nav links hidden. A 3-line hamburger button (`.hamburger`) appears. Clicking it opens a full-screen dark overlay (`.mobile-menu`) with large Bebas Neue links.
 
 Hamburger animation: spans rotate and fade into an ✕ on open. Body scroll is locked while open.
 
@@ -173,12 +206,11 @@ Hamburger animation: spans rotate and fade into an ✕ on open. Body scroll is l
 
 ### Buttons
 
-#### Back Button (case study pages)
+#### Back Button (all sub-pages)
 ```html
-<a href="index.html#my-work" class="back-btn">← Back</a>
+<a href="index.html#my-work" class="back-btn">← Back to Work</a>
 ```
-- Text: **"← Back"**
-- Target: `index.html#my-work` (lands on the Work section, not the top of the page)
+- Target: `index.html#my-work`
 - Hover: slides left 4px
 
 #### Hero CTA Button (`index.html`)
@@ -211,13 +243,14 @@ A centered CTA at the bottom of each case study. Has permanent **glow-pulse anim
 
 ### Cards
 
-Used on case study pages for key findings:
+Used across `index.html` (experience section) and case study pages:
 
 ```css
-.card { background: rgba(244,240,232,0.06); border-radius: 10px; padding: 24px 28px; }
+.card          { background: rgba(244,240,232,0.06); border-radius: 10px; padding: 24px 28px; }
+.card.on-light { background: white; border-color: rgba(13,13,13,0.1); box-shadow: ...; }
 ```
 
-On case study pages, cards **fade up and stagger in** as they enter the viewport.
+Experience cards use: `.card.on-light` with a colored left border (`var(--accent)` for HighBizz, `var(--accent3)` for Brandstory).
 
 ---
 
@@ -245,7 +278,6 @@ Used in `social-media.html`. On mobile (≤860px): `display: block; overflow-x: 
 
 ```css
 .notion-btn {
-  background: linear-gradient(135deg, var(--accent) 0%, #b8440f 100%);
   animation: notionPulse 2.6s ease-in-out infinite;
 }
 @keyframes notionPulse {
@@ -262,7 +294,7 @@ Used in `social-media.html`. On mobile (≤860px): `display: block; overflow-x: 
 
 | Animation | Trigger | Description |
 |---|---|---|
-| **Scroll progress bar** (`#scroll-prog`) | Scroll | Glowing orange shimmer bar fills across the top of the page as user scrolls. Uses `documentElement.scrollHeight` for accuracy. `z-index: 99999` |
+| **Scroll progress bar** (`#scroll-prog`) | Scroll | Glowing orange shimmer bar fills across the top of the page as user scrolls |
 | **Hero title scramble** | Page load (600ms delay) | Letters rapidly cycle through random chars before resolving to "SARAN KC" |
 | **Typewriter cursor** | Always | Blinking `|` cursor after the hero subtitle via `::after` |
 | **Cursor trail** | Mouse move | 7 staggered orange dots follow the cursor with increasing delay |
@@ -277,7 +309,21 @@ Used in `social-media.html`. On mobile (≤860px): `display: block; overflow-x: 
 | **Nav logo glitch** | Hover | "SARAN KC" logo scrambles characters before resolving back |
 | **Section reveals** | Scroll into view | `.reveal`, `.reveal-l`, `.reveal-r`, `.t-item` fade/slide in via `IntersectionObserver` |
 
-### Case Study Page Animations
+### clients.html Animations
+
+| Animation | Trigger | Description |
+|---|---|---|
+| **Card scroll reveal** | Scroll into view | Each client card fades up with a staggered `transitionDelay` (70ms per card) |
+
+### case-studies.html Animations
+
+| Animation | Trigger | Description |
+|---|---|---|
+| **Card scroll reveal** | Scroll into view | Each case study card fades up on scroll via `IntersectionObserver` |
+| **Accordion expand** | Click header | `.cs-body` expands via `max-height` transition (0 → 800px) with cubic-bezier easing |
+| **Toggle icon rotation** | Active header | The `+` icon rotates 45° to become `×` when open |
+
+### Case Study Page Animations (content-creation, seo, social-media)
 
 | Animation | Pages | Description |
 |---|---|---|
@@ -291,24 +337,108 @@ Used in `social-media.html`. On mobile (≤860px): `display: block; overflow-x: 
 
 ---
 
-## 7. Page-Specific Styles
+## 7. Page-Specific Styles & Content
 
 ### index.html — Sections
 
 | Section ID | Background | Key Elements |
 |---|---|---|
 | `#hero` | `var(--ink)` | Animated stripe + breathing glow, scramble title, typewriter subtitle, magnetic CTA |
-| `#about` | `var(--ink-mid)` | 2-col grid (text + info cards) |
-| `#my-work` | `var(--off-white)` | Staggered work-card nav links |
-| `#skills` | `var(--ink)` | Tag cloud (stagger on scroll) + cert list (stagger on scroll) |
+| `#about` | `var(--ink-mid)` | 2-col grid (text + info cards), Why Me? block, My Approach block |
+| `#experience` | `var(--off-white)` | Two work experience cards (HighBizz + Brandstory) with categorised bullet points |
+| `#my-work` | `var(--off-white)` | 5 staggered work-card nav links |
+| `#skills` | `var(--ink)` | Core Skills tag cloud + Tools tag cloud (stagger on scroll) + cert list |
 | `#education` | `var(--off-white)` | Vertical timeline with scroll-reveal |
-| `#awards` | `var(--accent2)` | Staggered award list |
+| `#awards` | `var(--accent2)` | Staggered award list, including published research entry |
 | `#contact` | `var(--ink)` | Magnetic contact pills |
 
-### Content Areas (About Section)
+#### About Section Info Cards
 
-- **Role card:** Digital Marketing Manager · HighBizz
-- **About text:** "Graduated with my **MBA in Marketing** from Alliance Ascent College, Bengaluru — currently working at HighBizz managing multi-client digital campaigns..."
+| Icon | Label | Value |
+|---|---|---|
+| 💼 | Current Role | Digital Marketing Executive · HighBizz |
+| 🎓 | Education | MBA – Marketing · Alliance Ascent College, Bengaluru |
+| 🎯 | Specialisations | SEO · Content Creation · Social Media Marketing |
+| 📍 | Location | Bengaluru, Karnataka, India |
+| 📩 | Email | kcsaran2001@gmail.com |
+
+#### Experience Section
+
+**Entry 1 — Digital Marketing Executive (Intern)**
+- Company: HighBizz · Bengaluru
+- Duration: Aug 2025 – Present
+- Categories: SEO · Social Media · Email Marketing · Content Creation · Analytics
+
+**Entry 2 — Marketing Intern**
+- Company: Brandstory · Bengaluru
+- Duration: Jun 2024 – Aug 2024
+
+#### Skills Section
+
+**Core Skills tag cloud:**
+SEO · Keyword Research · Backlink Building · On-Page SEO · Local SEO · Content Strategy · Social Media Management · Reels Creation · Content Shoots · Email Marketing · Performance Marketing (Meta Ads) · Market Research · Analytics & Reporting · Influencer/UGC Research
+
+**Tools I Use:**
+Google Analytics · Search Console · SEMrush · Yoast SEO · Rank Math · WordPress · GA4 · Google Ads Planner · Meta Business Suite · Canva · Microsoft Office · G Suite · Notion · Instagram · LinkedIn · **Brevo · CapCut · ChatGPT / AI Tools · Excel**
+
+#### Achievements Section (top-to-bottom order)
+1. 🧠 Published Research — "How Humor in Advertising Influences Consumer Decision-Making"
+2. 🏅 Organised and led "ALLIANCE ONE" inter-college event
+3. 🥇 Winner of inter-college volleyball tournament
+4. 🎤 Represented college in marketing competitions
+5. 📢 Volunteered in on-campus marketing campaigns
+
+---
+
+### clients.html
+
+**Page heading:** `client experience.`
+**Subheading:** `9 brands across D2C, Real Estate, Healthcare, Travel & Events`
+
+#### Client Cards
+
+All 9 cards display: logo · brand name · industry tag · service tags.
+
+| # | Client | Industry | Logo Source | Services |
+|---|---|---|---|---|
+| 1 | Aster Holidays | Hospitality – Resorts | `images/aster-holidays.png` | SEO · Social Media · Email Marketing · Local SEO |
+| 2 | Aster Travel | B2B Travel | `images/aster-travel.png` | SEO · Email Marketing |
+| 3 | Venue By Choice | Event Platform | `images/venue-by-choice.png` | SEO · Social Media · Local SEO |
+| 4 | Vahaan Oils | D2C (Edible Oils) | Emoji 🛢 (placeholder) | SEO · Content Strategy · Meta Ads |
+| 5 | Arigato Wellness Centre | Healthcare & Wellness | `images/arigato-wellness.svg` | SEO · Social Media · Content Shoots · Local SEO |
+| 6 | Geown Properties | Real Estate | `images/geown-properties.png` | SEO · Social Media |
+| 7 | Pruthvi Projects | Real Estate | `images/pruthvi-projects.png` | SEO · Content |
+| 8 | Mana Herbals | D2C Ayurveda | `images/mana-herbals.avif` | SEO · Content |
+| 9 | SDP Stones | Building Materials | `images/sdp-stones.webp` | SEO · Local SEO |
+
+> **Logo handling:** Local files in `/images` take priority. If a logo file is missing for a brand (e.g. Vahaan Oils), a generic emoji is shown instead. To add a logo later: drop `vahaan-oils.{ext}` into `/images` and update the `src` in `clients.html`.
+
+#### Card Reveal Animation
+Each `.client-card` starts with `opacity: 0; transform: translateY(28px)`. An `IntersectionObserver` adds `.vis` class (making it visible) with a per-card `transitionDelay` stagger.
+
+---
+
+### case-studies.html
+
+**Page heading:** `case studies.`
+**Subheading:** `Real problems. Real strategies. Real results.`
+
+#### Case Studies (accordion — click to expand)
+
+| # | Title | Industry | Key Insight |
+|---|---|---|---|
+| 01 | Aster Holidays — Building a Travel Growth Engine | Hospitality | SEO + Content + Email = full-funnel growth |
+| 02 | Arigato Wellness Centre — Trust-Based Healthcare Marketing | Healthcare & Wellness | Authentic content builds trust faster than paid ads |
+| 03 | Vahaan Oils — D2C Positioning Strategy | D2C Edible Oils | Positioning > Promotion |
+| 04 | Venue By Choice — Capturing Search Intent | Event Platform | Capture existing demand first |
+
+Each study shows 3 columns: **Problem · Action · Result**, plus a gold **💡 Insight** bar spanning the full width.
+
+#### Accordion Behaviour
+- One study open at a time (clicking another closes the open one)
+- `max-height: 0 → 800px` transition with `cubic-bezier(0.4, 0, 0.2, 1)` easing
+- `.cs-body-inner` padding: `24px 30px 30px` (top padding added to prevent content touching the header border)
+- The `+` toggle icon rotates 45° → becomes `×` when active
 
 ---
 
@@ -343,6 +473,20 @@ mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => tog
 
 Separate observers for `.tags`, `.cert-list`, `.award-list`, `.work-nav` trigger stagger chains.
 
+### Case Study Accordion (`case-studies.html`)
+```js
+function toggleCS(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.cs-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.cs-header').forEach(h => h.classList.remove('active'));
+    if (!isOpen) {
+        body.classList.add('open');
+        header.classList.add('active');
+    }
+}
+```
+
 ---
 
 ## 9. External Links & Integrations
@@ -353,40 +497,83 @@ Separate observers for `.tags`, `.cert-list`, `.award-list`, `.work-nav` trigger
 | Notion (Content Creation) | `roan-draw-2ee.notion.site/Content-Creation-s-2de6aa05a7c381b68f78e87390e5f15a` | `content-creation.html` |
 | Notion (SEO) | `roan-draw-2ee.notion.site/SEO-2de6aa05a7c3812f93cec3d2170df187` | `seo.html` |
 | Notion (Social Media) | `roan-draw-2ee.notion.site/Social-Media-creative-s-2de6aa05a7c3813a82aff9b9afd1fb29` | `social-media.html` |
-| LinkedIn | `linkedin.com/in/saran-kumar-kc` | `index.html` contact section |
-| Email (mailto) | `kcsaran2001@gmail.com` | `index.html` contact section |
-| Phone (tel) | `+91 63799 70050` | `index.html` contact section |
+| LinkedIn | `linkedin.com/in/saran-kumar-kc` | All pages (contact/footer) |
+| Email (mailto) | `kcsaran2001@gmail.com` | All pages (contact/footer) |
+| Phone (tel) | `+91 63799 70050` | All pages (contact/footer) |
 
 ---
 
 ## 10. Responsive Breakpoints
 
 ```
-≤860px  — Tablet/mobile: hamburger menu, stacked grids, reduced section padding (80px 5vw)
-≤480px  — Small phone: tighter font sizes, stacked contact pills, single-column metrics,
-           reduced notion button padding, smaller back button
+≤860px  — Tablet/mobile: hamburger menu, stacked grids, reduced section padding
+≤480px  — Small phone: tighter font sizes, stacked contact pills, single-column layouts
 ```
 
 ### Key changes at ≤860px (all pages)
 - Nav links hidden → hamburger shown
-- Section padding: `100px 10vw` → `80px 5vw`
+- Section padding: `100px 10vw` → `80px 5vw` (or `60px 5vw` on sub-pages)
 - About, skills, two-col grids: collapse to single column
-- Work cards: 2-per-row on tablet
+- Work cards: wrap into 2-per-row
 - Data table: horizontal scroll enabled
+- Case study accordion body: single-column layout
 
 ### Key changes at ≤480px
-- Hero title: `clamp(3.5rem, 18vw, 16rem)` (min reduced so it scales correctly)
+- Hero title: scales via `clamp(3.5rem, 18vw, 16rem)`
 - Footer heading: `clamp(2rem, 14vw, 7rem)`
 - Contact pills: stack vertically, full-width
 - Work cards: full-width single column
-- Notion button: reduced padding, text allowed to wrap
+- Client cards: single column grid
+- Notion button: reduced padding
 
 ---
 
-## 11. Deployment Notes
+## 11. Changelog
+
+### April 2026 Update
+
+#### `index.html`
+- **Fixed:** Job title corrected from `Digital Marketing Manager` → `Digital Marketing Executive · HighBizz`
+- **Added:** "⚡ Why Me?" stats block in the About section (9+ clients, 12–20% SEO growth, 300+ backlinks, etc.)
+- **Added:** "🧩 My Marketing Approach" 4-step framework block in the About section
+- **Added:** `#experience` section (Work Experience) between About and My Work, with two entries:
+  - Digital Marketing Executive (Intern) · HighBizz · Aug 2025–Present
+  - Marketing Intern · Brandstory · Jun 2024–Aug 2024
+- **Added:** `Experience` link to desktop navbar and mobile menu
+- **Added:** Core Skills tag cloud above the Tools grid in `#skills`
+- **Added:** 4 new tools to "Tools I Use": Brevo · CapCut · ChatGPT / AI Tools · Excel
+- **Added:** Published Research achievement at the top of `#awards`
+- **Added:** 🤝 Clients and 🔬 Case Studies work cards to `#my-work`
+- **Reordered:** Work cards — Clients and Case Studies now appear first
+- **Removed:** "Skills & Certs" and "Education" buttons from the My Work section
+
+#### `clients.html` — New File
+- 9 client brand cards with logos, industry tags, and service tags
+- Local image files from `/images` folder used for all available logos
+- Vahaan Oils uses emoji placeholder (no logo available)
+
+#### `case-studies.html` — New File
+- 4 expandable accordion case studies
+- Each study: Problem · Action · Result columns + 💡 Insight bar
+- Smooth `max-height` accordion animation
+- Fixed inner padding (`24px 30px 30px`) to prevent content touching the header border
+
+#### `images/` — New Folder
+- Local logo assets for 8 of the 9 clients
+- Mixed formats supported: `.png`, `.svg`, `.avif`, `.webp`
+
+#### `portfoliov1/` — New Folder
+- Full snapshot of the original site before the April 2026 update
+
+---
+
+## 12. Deployment Notes
 
 - **No build process.** All files are plain HTML with embedded CSS and JS.
-- **Netlify:** Drag the `Saran Port/` folder into Netlify Drop, or connect via Git. Entry point is `index.html`.
+- **GitHub Pages:** Push to the `main` branch of `mahadevanpb/Saran-Portfolio`. Entry point is `index.html`.
+- **Netlify:** Drag the `Saran Port/` folder into Netlify Drop, or connect via Git.
 - **All styles are embedded** inside each HTML file — no broken CSS links on deployment.
-- **All pages linked relatively** (e.g., `href="content-creation.html"`) — keep all `.html` files in the same directory.
+- **All pages linked relatively** (e.g., `href="clients.html"`) — keep all `.html` files in the same directory.
+- **Images folder:** The `/images` folder must be deployed alongside the HTML files. All logo `src` paths are relative (e.g., `images/aster-holidays.png`).
 - **Google Fonts require internet.** The site uses system fallback fonts (`sans-serif`) if offline.
+- **`portfoliov1/` folder** is a local backup — it does not need to be deployed and can be excluded from the repo if desired.
