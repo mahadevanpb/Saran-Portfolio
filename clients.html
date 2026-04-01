@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Experience — Saran Kumar KC</title>
+    <meta name="description" content="9 brands across D2C, Real Estate, Healthcare, Travel & Events — client work by Saran Kumar KC, Digital Marketing Executive.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --ink:               #0d0d0d;
+        --ink-mid:           #1a1a1a;
+        --off-white:         #f4f0e8;
+        --warm-gray:         #e8e4dc;
+        --accent:            #d4531a;
+        --accent2:           #1a4d3e;
+        --accent3:           #c9a84c;
+        --stripe-a:          #0d0d0d;
+        --stripe-b:          #1f1f1f;
+        --text-on-dark:      #f4f0e8;
+        --text-muted-dark:   rgba(244, 240, 232, 0.55);
+        --text-muted-light:  rgba(13, 13, 13, 0.5);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+        font-family: 'Syne', sans-serif;
+        background: var(--off-white);
+        color: var(--ink);
+        overflow-x: hidden;
+        cursor: none;
+        }
+        #cur {
+        width: 10px; height: 10px; background: var(--accent);
+        border-radius: 50%; position: fixed; top: 0; left: 0;
+        pointer-events: none; z-index: 9999; transition: transform 0.12s;
+        }
+        #curl {
+        width: 32px; height: 32px; border: 1.5px solid var(--accent);
+        border-radius: 50%; position: fixed; top: 0; left: 0;
+        pointer-events: none; z-index: 9998; opacity: 0.6;
+        }
+        nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 18px 56px; background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(244, 240, 232, 0.07);
+        }
+        .nav-logo {
+        font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+        letter-spacing: 0.1em; color: var(--off-white); text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+        font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+        text-transform: uppercase; color: rgba(244, 240, 232, 0.55);
+        text-decoration: none; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .hamburger {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        background: none; border: none; cursor: pointer; padding: 6px; z-index: 201;
+        }
+        .hamburger span {
+        display: block; width: 24px; height: 2px; background: var(--off-white);
+        border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu {
+        display: none; position: fixed; inset: 0; z-index: 198;
+        background: rgba(13, 13, 13, 0.98); flex-direction: column;
+        align-items: center; justify-content: center; gap: 36px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+        font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+        color: var(--off-white); text-decoration: none; letter-spacing: 0.08em;
+        transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--accent); }
+
+        /* Page Hero */
+        .page-hero {
+        background: var(--ink); padding: 160px 10vw 80px;
+        }
+        .section-label {
+        font-size: 0.68rem; font-weight: 700; letter-spacing: 0.28em;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+        }
+        .page-heading {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 8vw, 6rem); color: var(--off-white);
+        line-height: 1; letter-spacing: 0.04em; margin-bottom: 16px;
+        }
+        .page-heading em { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; }
+        .page-sub {
+        font-family: 'Instrument Serif', serif; font-style: italic;
+        font-size: 1.15rem; color: rgba(244, 240, 232, 0.55);
+        }
+        .divider-stripe {
+        height: 8px;
+        background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 20px, var(--ink) 20px, var(--ink) 40px);
+        }
+
+        /* Clients Grid */
+        .clients-section { padding: 80px 10vw; background: var(--ink-mid); }
+        .clients-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px; margin-top: 48px;
+        }
+        .client-card {
+        background: rgba(244, 240, 232, 0.05);
+        border: 1px solid rgba(244, 240, 232, 0.1);
+        border-radius: 12px; padding: 28px;
+        transition: background 0.2s, transform 0.25s, border-color 0.2s;
+        opacity: 0; transform: translateY(28px);
+        transition: opacity 0.6s ease, transform 0.6s ease, background 0.2s, border-color 0.2s;
+        }
+        .client-card.vis {
+        opacity: 1; transform: translateY(0);
+        }
+        .client-card:hover {
+        background: rgba(212, 83, 26, 0.1);
+        border-color: rgba(212, 83, 26, 0.35);
+        transform: translateY(-4px);
+        }
+        .client-logo-wrap {
+        width: 48px; height: 48px; border-radius: 8px;
+        background: rgba(244, 240, 232, 0.08);
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 16px; overflow: hidden;
+        border: 1px solid rgba(244, 240, 232, 0.12);
+        }
+        .client-logo-wrap img {
+        width: 40px; height: 40px; object-fit: contain;
+        }
+        .client-logo-wrap .logo-emoji {
+        font-size: 1.6rem; line-height: 1;
+        }
+        .client-name {
+        font-size: 1rem; font-weight: 700; color: var(--off-white);
+        margin-bottom: 6px;
+        }
+        .client-industry {
+        display: inline-block;
+        font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--accent3);
+        background: rgba(201, 168, 76, 0.1);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 3px; padding: 3px 9px; margin-bottom: 16px;
+        }
+        .client-services {
+        display: flex; flex-wrap: wrap; gap: 7px;
+        }
+        .service-tag {
+        font-size: 0.72rem; font-weight: 600;
+        padding: 5px 12px;
+        background: rgba(244, 240, 232, 0.06);
+        border: 1px solid rgba(244, 240, 232, 0.13);
+        border-radius: 4px; color: rgba(244, 240, 232, 0.75);
+        transition: background 0.2s, color 0.2s;
+        }
+        .client-card:hover .service-tag {
+        background: rgba(212, 83, 26, 0.12);
+        border-color: rgba(212, 83, 26, 0.25);
+        }
+
+        /* Back button */
+        .back-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 24px; background: rgba(244, 240, 232, 0.1);
+        color: var(--off-white); border-radius: 6px;
+        font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+        text-transform: uppercase; text-decoration: none;
+        margin-bottom: 40px; transition: background 0.2s, transform 0.2s;
+        border: 1px solid rgba(244, 240, 232, 0.2);
+        }
+        .back-btn:hover { background: rgba(244, 240, 232, 0.2); transform: translateX(-4px); }
+
+        /* Footer / Contact */
+        #contact {
+        background: var(--ink); padding: 80px 10vw 48px; text-align: center;
+        }
+        .footer-copy {
+        font-size: 0.68rem; letter-spacing: 0.15em;
+        color: rgba(244, 240, 232, 0.22); text-transform: uppercase; margin-top: 24px;
+        }
+        .contact-row {
+        display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+        }
+        .cpill {
+        display: flex; align-items: center; gap: 10px;
+        padding: 14px 28px; background: rgba(244, 240, 232, 0.07);
+        border: 1px solid rgba(244, 240, 232, 0.15); border-radius: 6px;
+        font-size: 0.85rem; font-weight: 600;
+        color: rgba(244, 240, 232, 0.82); text-decoration: none;
+        transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+        }
+        .cpill:hover {
+        background: var(--accent); border-color: var(--accent);
+        color: white; transform: translateY(-2px);
+        }
+        .footer-heading {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.5rem, 6vw, 5rem); color: var(--off-white);
+        line-height: 1; letter-spacing: 0.03em; margin-bottom: 12px;
+        }
+        .footer-heading em { color: var(--accent); font-style: normal; }
+        .footer-sub {
+        font-family: 'Instrument Serif', serif; font-style: italic;
+        font-size: 1.1rem; color: rgba(244, 240, 232, 0.45); margin-bottom: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+        nav { padding: 14px 20px; }
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+        .page-hero { padding: 130px 5vw 60px; }
+        .clients-section { padding: 60px 5vw; }
+        #contact { padding: 60px 5vw 40px; }
+        }
+        @media (max-width: 480px) {
+        .clients-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="cur"></div>
+    <div id="curl"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">SARAN KC</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#my-work">Work</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="ham" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mob-menu">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#my-work">Work</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#education">Education</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="section-label">Portfolio</div>
+        <h1 class="page-heading">client <em>experience</em>.</h1>
+        <p class="page-sub">9 brands across D2C, Real Estate, Healthcare, Travel &amp; Events</p>
+    </section>
+
+    <div class="divider-stripe"></div>
+
+    <section class="clients-section">
+        <a href="index.html#my-work" class="back-btn">← Back to Work</a>
+
+        <div class="clients-grid">
+
+            <!-- 1. Aster Holidays -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/aster-holidays.png" alt="Aster Holidays logo">
+                </div>
+                <div class="client-name">Aster Holidays</div>
+                <div class="client-industry">Hospitality – Resorts</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Social Media</span>
+                    <span class="service-tag">Email Marketing</span>
+                    <span class="service-tag">Local SEO</span>
+                </div>
+            </div>
+
+            <!-- 2. Aster Travel -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/aster-travel.png" alt="Aster Travel logo">
+                </div>
+                <div class="client-name">Aster Travel</div>
+                <div class="client-industry">B2B Travel</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Email Marketing</span>
+                </div>
+            </div>
+
+            <!-- 3. Venue By Choice -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/venue-by-choice.png" alt="Venue By Choice logo">
+                </div>
+                <div class="client-name">Venue By Choice</div>
+                <div class="client-industry">Event Platform</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Social Media</span>
+                    <span class="service-tag">Local SEO</span>
+                </div>
+            </div>
+
+            <!-- 4. Vahaan Oils -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <span class="logo-emoji">🛢</span>
+                </div>
+                <div class="client-name">Vahaan Oils</div>
+                <div class="client-industry">D2C (Edible Oils)</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Content Strategy</span>
+                    <span class="service-tag">Meta Ads</span>
+                </div>
+            </div>
+
+            <!-- 5. Arigato Wellness Centre -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/arigato-wellness.svg" alt="Arigato Wellness Centre logo">
+                </div>
+                <div class="client-name">Arigato Wellness Centre</div>
+                <div class="client-industry">Healthcare &amp; Wellness</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Social Media</span>
+                    <span class="service-tag">Content Shoots</span>
+                    <span class="service-tag">Local SEO</span>
+                </div>
+            </div>
+
+            <!-- 6. Geown Properties -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/geown-properties.png" alt="Geown Properties logo">
+                </div>
+                <div class="client-name">Geown Properties</div>
+                <div class="client-industry">Real Estate</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Social Media</span>
+                </div>
+            </div>
+
+            <!-- 7. Pruthvi Projects -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/pruthvi-projects.png" alt="Pruthvi Projects logo">
+                </div>
+                <div class="client-name">Pruthvi Projects</div>
+                <div class="client-industry">Real Estate</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Content</span>
+                </div>
+            </div>
+
+            <!-- 8. Mana Herbals -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/mana-herbals.avif" alt="Mana Herbals logo">
+                </div>
+                <div class="client-name">Mana Herbals</div>
+                <div class="client-industry">D2C Ayurveda</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Content</span>
+                </div>
+            </div>
+
+            <!-- 9. SDP Stones -->
+            <div class="client-card">
+                <div class="client-logo-wrap">
+                    <img src="images/sdp-stones.webp" alt="SDP Stones logo">
+                </div>
+                <div class="client-name">SDP Stones</div>
+                <div class="client-industry">Building Materials</div>
+                <div class="client-services">
+                    <span class="service-tag">SEO</span>
+                    <span class="service-tag">Local SEO</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="footer-heading">let's work<em>together.</em></h2>
+        <p class="footer-sub">Thanks for getting this far 😊</p>
+        <div class="contact-row">
+            <a href="mailto:kcsaran2001@gmail.com" class="cpill">📩 kcsaran2001@gmail.com</a>
+            <a href="tel:+916379970050" class="cpill">☎️ +91 63799 70050</a>
+            <a href="https://www.linkedin.com/in/saran-kumar-kc" target="_blank" class="cpill">🔗 LinkedIn Profile</a>
+        </div>
+        <div class="footer-copy">© 2025 Saran Kumar KC · Marketing Portfolio</div>
+    </section>
+
+    <script>
+        const cursor = document.getElementById('cur');
+        const cursorL = document.getElementById('curl');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorL.style.left = e.clientX - 11 + 'px';
+            cursorL.style.top = e.clientY - 11 + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)'; cursorL.style.transform = 'scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)'; cursorL.style.transform = 'scale(1)';
+        });
+        /* Hamburger */
+        const ham = document.getElementById('ham');
+        const mobMenu = document.getElementById('mob-menu');
+        function toggleMenu(open) {
+            ham.classList.toggle('open', open);
+            mobMenu.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        ham.addEventListener('click', () => toggleMenu(!mobMenu.classList.contains('open')));
+        mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+        /* Card reveal on scroll */
+        const cardObs = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('vis'), idx * 80);
+                    cardObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.client-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.07) + 's';
+            cardObs.observe(card);
+        });
+    </script>
+</body>
+</html>

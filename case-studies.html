@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies — Saran Kumar KC</title>
+    <meta name="description" content="Real problems. Real strategies. Real results. Marketing case studies by Saran Kumar KC.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --ink:               #0d0d0d;
+        --ink-mid:           #1a1a1a;
+        --off-white:         #f4f0e8;
+        --warm-gray:         #e8e4dc;
+        --accent:            #d4531a;
+        --accent2:           #1a4d3e;
+        --accent3:           #c9a84c;
+        --stripe-a:          #0d0d0d;
+        --stripe-b:          #1f1f1f;
+        --text-on-dark:      #f4f0e8;
+        --text-muted-dark:   rgba(244, 240, 232, 0.55);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+        font-family: 'Syne', sans-serif;
+        background: var(--ink);
+        color: var(--ink);
+        overflow-x: hidden;
+        cursor: none;
+        }
+        #cur {
+        width: 10px; height: 10px; background: var(--accent);
+        border-radius: 50%; position: fixed; top: 0; left: 0;
+        pointer-events: none; z-index: 9999; transition: transform 0.12s;
+        }
+        #curl {
+        width: 32px; height: 32px; border: 1.5px solid var(--accent);
+        border-radius: 50%; position: fixed; top: 0; left: 0;
+        pointer-events: none; z-index: 9998; opacity: 0.6;
+        }
+        nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 18px 56px; background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(244, 240, 232, 0.07);
+        }
+        .nav-logo {
+        font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+        letter-spacing: 0.1em; color: var(--off-white); text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+        font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+        text-transform: uppercase; color: rgba(244, 240, 232, 0.55);
+        text-decoration: none; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .hamburger {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        background: none; border: none; cursor: pointer; padding: 6px; z-index: 201;
+        }
+        .hamburger span {
+        display: block; width: 24px; height: 2px; background: var(--off-white);
+        border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu {
+        display: none; position: fixed; inset: 0; z-index: 198;
+        background: rgba(13, 13, 13, 0.98); flex-direction: column;
+        align-items: center; justify-content: center; gap: 36px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+        font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+        color: var(--off-white); text-decoration: none; letter-spacing: 0.08em;
+        transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--accent); }
+
+        /* Page Hero */
+        .page-hero {
+        background: var(--ink); padding: 160px 10vw 80px;
+        }
+        .section-label {
+        font-size: 0.68rem; font-weight: 700; letter-spacing: 0.28em;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+        }
+        .page-heading {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 8vw, 6rem); color: var(--off-white);
+        line-height: 1; letter-spacing: 0.04em; margin-bottom: 16px;
+        }
+        .page-heading em { color: var(--accent); font-style: italic; font-family: 'Instrument Serif', serif; }
+        .page-sub {
+        font-family: 'Instrument Serif', serif; font-style: italic;
+        font-size: 1.15rem; color: rgba(244, 240, 232, 0.55);
+        }
+        .divider-stripe {
+        height: 8px;
+        background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 20px, var(--ink) 20px, var(--ink) 40px);
+        }
+
+        /* Case Studies Section */
+        .cs-section { padding: 80px 10vw; background: var(--ink-mid); }
+        .back-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 24px; background: rgba(244, 240, 232, 0.1);
+        color: var(--off-white); border-radius: 6px;
+        font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+        text-transform: uppercase; text-decoration: none;
+        margin-bottom: 40px; transition: background 0.2s, transform 0.2s;
+        border: 1px solid rgba(244, 240, 232, 0.2);
+        }
+        .back-btn:hover { background: rgba(244, 240, 232, 0.2); transform: translateX(-4px); }
+
+        .cs-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+
+        /* Expandable card */
+        .cs-card {
+        border: 1px solid rgba(244, 240, 232, 0.1);
+        border-radius: 12px; margin-bottom: 16px;
+        overflow: hidden;
+        opacity: 0; transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .cs-card.vis { opacity: 1; transform: translateY(0); }
+
+        .cs-header {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 26px 30px; background: rgba(244, 240, 232, 0.04);
+        cursor: pointer; gap: 20px;
+        transition: background 0.2s;
+        }
+        .cs-header:hover { background: rgba(212, 83, 26, 0.08); }
+        .cs-header.active { background: rgba(212, 83, 26, 0.12); }
+
+        .cs-header-left { display: flex; flex-direction: column; gap: 6px; }
+        .cs-number {
+        font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem;
+        letter-spacing: 0.2em; color: var(--accent); opacity: 0.7;
+        }
+        .cs-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+        color: var(--off-white); letter-spacing: 0.03em; line-height: 1.1;
+        }
+        .cs-industry {
+        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--accent3);
+        }
+        .cs-toggle {
+        width: 32px; height: 32px; border-radius: 50%;
+        border: 1.5px solid rgba(244, 240, 232, 0.2);
+        display: flex; align-items: center; justify-content: center;
+        color: rgba(244, 240, 232, 0.5); font-size: 1.1rem;
+        flex-shrink: 0; transition: border-color 0.2s, transform 0.3s, color 0.2s;
+        }
+        .cs-header.active .cs-toggle {
+        border-color: var(--accent); color: var(--accent); transform: rotate(45deg);
+        }
+
+        .cs-body {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cs-body.open { max-height: 800px; }
+
+        .cs-body-inner {
+        padding: 24px 30px 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        }
+
+        .cs-block { }
+        .cs-block-label {
+        font-size: 0.67rem; font-weight: 700; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+        padding-bottom: 6px; border-bottom: 1px solid rgba(212, 83, 26, 0.25);
+        }
+        .cs-block-label.green { color: #4ade80; border-color: rgba(74, 222, 128, 0.25); }
+        .cs-block-label.gold { color: var(--accent3); border-color: rgba(201, 168, 76, 0.25); }
+        .cs-block-label.blue { color: #60a5fa; border-color: rgba(96, 165, 250, 0.25); }
+
+        .cs-block p, .cs-block li {
+        font-size: 0.86rem; color: rgba(244, 240, 232, 0.72); line-height: 1.7;
+        }
+        .cs-block ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+        .cs-block ul li { display: flex; gap: 8px; }
+        .cs-block ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+        .cs-insight {
+        grid-column: 1 / -1;
+        background: rgba(201, 168, 76, 0.07);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 8px; padding: 16px 20px;
+        font-family: 'Instrument Serif', serif; font-style: italic;
+        font-size: 1rem; color: var(--accent3); line-height: 1.65;
+        }
+
+        /* Footer */
+        #contact {
+        background: var(--ink); padding: 80px 10vw 48px; text-align: center;
+        }
+        .footer-heading {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.5rem, 6vw, 5rem); color: var(--off-white);
+        line-height: 1; letter-spacing: 0.03em; margin-bottom: 12px;
+        }
+        .footer-heading em { color: var(--accent); font-style: normal; }
+        .footer-sub {
+        font-family: 'Instrument Serif', serif; font-style: italic;
+        font-size: 1.1rem; color: rgba(244, 240, 232, 0.45); margin-bottom: 40px;
+        }
+        .contact-row {
+        display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+        }
+        .cpill {
+        display: flex; align-items: center; gap: 10px;
+        padding: 14px 28px; background: rgba(244, 240, 232, 0.07);
+        border: 1px solid rgba(244, 240, 232, 0.15); border-radius: 6px;
+        font-size: 0.85rem; font-weight: 600;
+        color: rgba(244, 240, 232, 0.82); text-decoration: none;
+        transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+        }
+        .cpill:hover {
+        background: var(--accent); border-color: var(--accent);
+        color: white; transform: translateY(-2px);
+        }
+        .footer-copy {
+        font-size: 0.68rem; letter-spacing: 0.15em;
+        color: rgba(244, 240, 232, 0.22); text-transform: uppercase; margin-top: 24px;
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+        nav { padding: 14px 20px; }
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+        .page-hero { padding: 130px 5vw 60px; }
+        .cs-section { padding: 60px 5vw; }
+        .cs-header { padding: 20px; }
+        .cs-body-inner { padding: 20px 20px 24px; grid-template-columns: 1fr; }
+        #contact { padding: 60px 5vw 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="cur"></div>
+    <div id="curl"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">SARAN KC</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#my-work">Work</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="ham" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mob-menu">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#my-work">Work</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#education">Education</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="section-label">Deep Dives</div>
+        <h1 class="page-heading">case <em>studies</em>.</h1>
+        <p class="page-sub">Real problems. Real strategies. Real results.</p>
+    </section>
+
+    <div class="divider-stripe"></div>
+
+    <section class="cs-section">
+        <a href="index.html#my-work" class="back-btn">← Back to Work</a>
+
+        <div class="cs-list">
+
+            <!-- Case Study 1 -->
+            <div class="cs-card">
+                <div class="cs-header" onclick="toggleCS(this)">
+                    <div class="cs-header-left">
+                        <div class="cs-number">CASE STUDY 01</div>
+                        <div class="cs-title">Aster Holidays — Building a Travel Growth Engine</div>
+                        <div class="cs-industry">Hospitality – Resorts</div>
+                    </div>
+                    <div class="cs-toggle">+</div>
+                </div>
+                <div class="cs-body">
+                    <div class="cs-body-inner">
+                        <div class="cs-block">
+                            <div class="cs-block-label">Problem</div>
+                            <p>Low organic visibility + no structured audience engagement system.</p>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label">Action</div>
+                            <ul>
+                                <li>Designed and executed an SEO strategy with targeted keyword research</li>
+                                <li>Built a content calendar aligned with travel seasons and audience intent</li>
+                                <li>Launched monthly email newsletters to nurture and retain audience</li>
+                            </ul>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label green">Result</div>
+                            <ul>
+                                <li>Increased organic search visibility</li>
+                                <li>Stronger engagement across platforms</li>
+                                <li>Built a repeat audience through email</li>
+                            </ul>
+                        </div>
+                        <div class="cs-insight">
+                            💡 SEO + Content + Email = full-funnel growth. Each channel reinforces the other.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="cs-card">
+                <div class="cs-header" onclick="toggleCS(this)">
+                    <div class="cs-header-left">
+                        <div class="cs-number">CASE STUDY 02</div>
+                        <div class="cs-title">Arigato Wellness Centre — Trust-Based Healthcare Marketing</div>
+                        <div class="cs-industry">Healthcare &amp; Wellness</div>
+                    </div>
+                    <div class="cs-toggle">+</div>
+                </div>
+                <div class="cs-body">
+                    <div class="cs-body-inner">
+                        <div class="cs-block">
+                            <div class="cs-block-label">Problem</div>
+                            <p>Low brand awareness + high trust barrier typical in healthcare.</p>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label">Action</div>
+                            <ul>
+                                <li>Produced authentic content shoots inside the clinic (real spaces, real staff)</li>
+                                <li>Built an educational social media strategy focused on wellness &amp; credibility</li>
+                                <li>Optimized Google Business Profile and local SEO signals</li>
+                            </ul>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label green">Result</div>
+                            <ul>
+                                <li>Improved Google Maps and local search visibility</li>
+                                <li>Increased walk-in inquiries</li>
+                                <li>Higher social media engagement</li>
+                            </ul>
+                        </div>
+                        <div class="cs-insight">
+                            💡 Authentic content builds trust faster than paid ads. Show, don't tell.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 3 -->
+            <div class="cs-card">
+                <div class="cs-header" onclick="toggleCS(this)">
+                    <div class="cs-header-left">
+                        <div class="cs-number">CASE STUDY 03</div>
+                        <div class="cs-title">Vahaan Oils — D2C Positioning Strategy</div>
+                        <div class="cs-industry">D2C Edible Oils</div>
+                    </div>
+                    <div class="cs-toggle">+</div>
+                </div>
+                <div class="cs-body">
+                    <div class="cs-body-inner">
+                        <div class="cs-block">
+                            <div class="cs-block-label">Problem</div>
+                            <p>Highly competitive D2C edible oil market with unclear brand positioning.</p>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label">Action</div>
+                            <ul>
+                                <li>Conducted keyword and competitor research to find positioning gaps</li>
+                                <li>Defined content pillars around health, purity, and authenticity</li>
+                                <li>Executed health-focused storytelling across content channels</li>
+                            </ul>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label green">Result</div>
+                            <ul>
+                                <li>Clear, differentiated brand positioning in search and content</li>
+                                <li>Better audience alignment and relevance</li>
+                            </ul>
+                        </div>
+                        <div class="cs-insight">
+                            💡 Positioning &gt; Promotion. Know your angle before you amplify.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 4 -->
+            <div class="cs-card">
+                <div class="cs-header" onclick="toggleCS(this)">
+                    <div class="cs-header-left">
+                        <div class="cs-number">CASE STUDY 04</div>
+                        <div class="cs-title">Venue By Choice — Capturing Search Intent</div>
+                        <div class="cs-industry">Event Platform</div>
+                    </div>
+                    <div class="cs-toggle">+</div>
+                </div>
+                <div class="cs-body">
+                    <div class="cs-body-inner">
+                        <div class="cs-block">
+                            <div class="cs-block-label">Problem</div>
+                            <p>Highly competitive search space for event venue discovery.</p>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label">Action</div>
+                            <ul>
+                                <li>Built a location-based SEO strategy targeting high-intent, specific searches</li>
+                                <li>Created content tailored to users actively looking to book venues</li>
+                            </ul>
+                        </div>
+                        <div class="cs-block">
+                            <div class="cs-block-label green">Result</div>
+                            <ul>
+                                <li>Improved search ranking and discoverability</li>
+                                <li>Better qualified organic traffic</li>
+                            </ul>
+                        </div>
+                        <div class="cs-insight">
+                            💡 Capture existing demand first. Don't just try to create it.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="footer-heading">let's work<em>together.</em></h2>
+        <p class="footer-sub">Thanks for getting this far 😊</p>
+        <div class="contact-row">
+            <a href="mailto:kcsaran2001@gmail.com" class="cpill">📩 kcsaran2001@gmail.com</a>
+            <a href="tel:+916379970050" class="cpill">☎️ +91 63799 70050</a>
+            <a href="https://www.linkedin.com/in/saran-kumar-kc" target="_blank" class="cpill">🔗 LinkedIn Profile</a>
+        </div>
+        <div class="footer-copy">© 2025 Saran Kumar KC · Marketing Portfolio</div>
+    </section>
+
+    <script>
+        const cursor = document.getElementById('cur');
+        const cursorL = document.getElementById('curl');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorL.style.left = e.clientX - 11 + 'px';
+            cursorL.style.top = e.clientY - 11 + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)'; cursorL.style.transform = 'scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)'; cursorL.style.transform = 'scale(1)';
+        });
+        /* Hamburger */
+        const ham = document.getElementById('ham');
+        const mobMenu = document.getElementById('mob-menu');
+        function toggleMenu(open) {
+            ham.classList.toggle('open', open);
+            mobMenu.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        ham.addEventListener('click', () => toggleMenu(!mobMenu.classList.contains('open')));
+        mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+        /* Expandable case study toggle */
+        function toggleCS(header) {
+            const body = header.nextElementSibling;
+            const isOpen = body.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.cs-body').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.cs-header').forEach(h => h.classList.remove('active'));
+            // Open clicked if it was closed
+            if (!isOpen) {
+                body.classList.add('open');
+                header.classList.add('active');
+            }
+        }
+
+        /* Card reveal on scroll */
+        const cardObs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('vis');
+                    cardObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.cs-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.1) + 's';
+            cardObs.observe(card);
+        });
+    </script>
+</body>
+</html>
