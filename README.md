@@ -52,12 +52,12 @@ A static HTML/CSS/JS personal marketing portfolio for **Saran Kumar KC**, a Digi
 ```
 Saran Port/
 ├── index.html              # Main portfolio homepage
-├── clients.html            # Client Experience page (9 brands) — NEW
-├── case-studies.html       # Case Studies page (4 expandable studies) — NEW
+├── clients.html            # Client Experience page (9 brands)
+├── case-studies.html       # Case Studies page (4 expandable studies)
 ├── content-creation.html   # Case study: Content Creation at HighBizz
 ├── seo.html                # Case study: SEO & Copywriting at HighBizz
 ├── social-media.html       # Case study: Social Media Management at HighBizz
-├── images/                 # Local logo assets — NEW
+├── images/                 # Local assets
 │   ├── aster-holidays.png
 │   ├── aster-travel.png
 │   ├── arigato-wellness.svg
@@ -65,14 +65,22 @@ Saran Port/
 │   ├── mana-herbals.avif
 │   ├── pruthvi-projects.png
 │   ├── sdp-stones.webp
-│   └── venue-by-choice.png
-├── portfoliov1/            # Snapshot of original site before April 2026 update — NEW
-│   ├── index.html
-│   ├── content-creation.html
-│   ├── seo.html
-│   └── social-media.html
-├── Saran_Portfolio_LLM_Instructions.md  # LLM change instructions (internal)
-└── README.md               # This documentation file
+│   ├── venue-by-choice.png
+│   ├── Screenshot_2026-01-05_021256.png   # Space Technique — GSC screenshot
+│   ├── Screenshot_2026-01-05_021456.png   # Pruthvi Projects — GSC screenshot
+│   ├── Screenshot_2026-01-05_035938.png   # Palagiri Construction — GSC screenshot
+│   ├── Screenshot_2026-01-05_040103.png   # Geown Properties — GSC screenshot
+│   └── Screenshot_2026-01-05_040328.png   # Aster Travel — GSC screenshot
+├── notion-attach/          # Exported Notion pages used as content source
+│   ├── content-creation-notion.html
+│   ├── social-media-notion.html
+│   └── seo/
+│       ├── SEO d3ba57b8526b83da9b368138652070f9.html
+│       └── Screenshot_2026-01-05_*.png    # (5 GSC screenshots)
+├── portfoliov1/            # Snapshot of site before April 2026 update
+├── portfoliov2/            # Snapshot of site before content-embed update
+├── Saran_Portfolio_LLM_Instructions.md
+└── README.md
 ```
 
 > **Note:** All CSS is embedded inside a `<style>` block within each HTML file. There is no external stylesheet. This was a deliberate choice for portability — each page is fully self-contained.
@@ -224,9 +232,9 @@ A centered CTA at the bottom of each case study. Has permanent **glow-pulse anim
 
 | Page | Button Text | Notion URL |
 |---|---|---|
-| `content-creation.html` | View Content Portfolio ↗ | `roan-draw-2ee.notion.site/Content-Creation-s-2de6aa05a7c381b68f78e87390e5f15a` |
-| `seo.html` | View SEO Portfolio ↗ | `roan-draw-2ee.notion.site/SEO-2de6aa05a7c3812f93cec3d2170df187` |
-| `social-media.html` | View Social Media Portfolio ↗ | `roan-draw-2ee.notion.site/Social-Media-creative-s-2de6aa05a7c3813a82aff9b9afd1fb29` |
+| `content-creation.html` | *(Removed — replaced with inline embeds)* | — |
+| `seo.html` | *(Removed — replaced with inline content sections)* | — |
+| `social-media.html` | *(Removed — replaced with inline embeds)* | — |
 
 ---
 
@@ -494,9 +502,11 @@ function toggleCS(header) {
 | Service | URL | Used in |
 |---|---|---|
 | Google Fonts | `fonts.googleapis.com` | All pages |
-| Notion (Content Creation) | `roan-draw-2ee.notion.site/Content-Creation-s-2de6aa05a7c381b68f78e87390e5f15a` | `content-creation.html` |
-| Notion (SEO) | `roan-draw-2ee.notion.site/SEO-2de6aa05a7c3812f93cec3d2170df187` | `seo.html` |
-| Notion (Social Media) | `roan-draw-2ee.notion.site/Social-Media-creative-s-2de6aa05a7c3813a82aff9b9afd1fb29` | `social-media.html` |
+| Instagram Embed API | `https://www.instagram.com/embed.js` | `content-creation.html`, `social-media.html` |
+| Miro Live Embed | `miro.com/app/live-embed/uXjVJQDKUo8=` | `social-media.html` |
+| Canva Embed (Design 01) | `canva.com/design/DAG9XfYaN9k/…/view?embed` | `seo.html` |
+| Canva Embed (Design 02) | `canva.com/design/DAG8PcxvRX8/…/view?embed` | `seo.html` |
+| Canva Embed (Design 03) | `canva.com/design/DAG67DWjtLw/…/view?embed` | `seo.html` |
 | LinkedIn | `linkedin.com/in/saran-kumar-kc` | All pages (contact/footer) |
 | Email (mailto) | `kcsaran2001@gmail.com` | All pages (contact/footer) |
 | Phone (tel) | `+91 63799 70050` | All pages (contact/footer) |
@@ -567,6 +577,59 @@ function toggleCS(header) {
 
 ---
 
+### April 2026 — Content Embed Update
+
+> This update replaced all external Notion portfolio buttons with inline, embedded content directly on each case study page.
+
+#### Files Changed
+
+| File | Change Type | Summary |
+|---|---|---|
+| `content-creation.html` | Modified | Replaced Notion button with Instagram reel embeds grid |
+| `social-media.html` | Modified | Replaced Notion button with Miro board iframe + Instagram reel embed grid |
+| `seo.html` | Modified | Replaced Notion button with Email Marketing section, Canva newsletter embeds, and GSC screenshot grid |
+| `images/` | Modified | Added 5 Google Search Console screenshot PNGs from `notion-attach/seo/` |
+| `portfoliov2/` | New Folder | Full backup of site files taken before this update |
+
+#### `content-creation.html`
+- **Removed:** "View Content Portfolio ↗" Notion button
+- **Added:** `.notion-content-section` block with:
+  - **8 Instagram reel embeds** in a responsive `reel-embed-grid` (2-col, `auto-fit minmax(320px, 1fr)`)
+  - Each reel uses the official `<blockquote class="instagram-media">` embed format
+  - Instagram `embed.js` loaded via `<script async src="https://www.instagram.com/embed.js">`
+- **CSS added:** `.reel-embed-grid`, `.embed-wrap`, `.embed-wrap > .instagram-media` (scoped under `.notion-content-section`)
+- **Security:** All external links use `rel="noopener noreferrer"`
+- **Note:** A broken-link "Reference Content" section (5 annotated format embeds) was added then later removed in the same session
+
+#### `social-media.html`
+- **Removed:** "View Social Media Portfolio ↗" Notion button
+- **Added:** `.notion-content-section` block with:
+  - **Miro Board iframe embed** — live-embed URL (`?embedMode=view_only_without_ui`) displayed at 520px height in a rounded dark container with a subtle "Open in Miro ↗" fallback link
+  - **8 Instagram reel embeds** in a responsive `reel-embed-grid` (same pattern as `content-creation.html`)
+- **CSS added:** `.reel-embed-grid`, `.embed-wrap`, `.ref-embed`, `.miro-embed-wrap`, `.miro-fallback`, `hr.notion-divider`
+- **Note:** A broken-link "Reference Content" section (5 annotated growth format embeds) was added then later removed
+
+#### `seo.html`
+- **Removed:** "View SEO Portfolio ↗" Notion button
+- **Added:** `.notion-content-section` block with:
+  1. **Email Marketing section** — 3 detailed sub-bullets (newsletter design, subject-line optimisation, engagement monitoring)
+  2. **Newsletter Designs** — 3 Canva newsletter designs embedded as portrait iframes (`?embed` URL parameter) in a 3-col responsive grid (`canva-embed-row`). Each embed uses A4 aspect ratio (`padding-top: 141%`) with a "Open in Canva ↗" fallback link
+  3. **Clients SEO Performance** — 5 Google Search Console screenshots embedded as a labelled image grid:
+     - Row 1 (3-col): Space Technique · Palagiri Construction · Pruthvi Projects
+     - Row 2 (2-col): Geown Properties · Aster Travel
+- **CSS added:** `.notion-content-section`, `.canva-embed-row`, `.canva-embed-wrap`, `.canva-embed-label`, `.iframe-ratio`, `.canva-fallback`, `.seo-img-grid`, `.img-wrap`, `.img-label`
+- **Images:** 5 PNG screenshots copied from `notion-attach/seo/` → `images/`
+
+#### Embed Compatibility Notes
+
+| Embed Type | Requirement | Fallback if failed |
+|---|---|---|
+| Instagram reels | Post must be public | "View on Instagram" text link |
+| Miro board | Board must be set to public/shareable | "Open in Miro ↗" link |
+| Canva designs | Design must be "Anyone with link can view" | "Open in Canva ↗" link |
+
+---
+
 ## 12. Deployment Notes
 
 - **No build process.** All files are plain HTML with embedded CSS and JS.
@@ -574,6 +637,10 @@ function toggleCS(header) {
 - **Netlify:** Drag the `Saran Port/` folder into Netlify Drop, or connect via Git.
 - **All styles are embedded** inside each HTML file — no broken CSS links on deployment.
 - **All pages linked relatively** (e.g., `href="clients.html"`) — keep all `.html` files in the same directory.
-- **Images folder:** The `/images` folder must be deployed alongside the HTML files. All logo `src` paths are relative (e.g., `images/aster-holidays.png`).
+- **Images folder:** The `/images` folder must be deployed alongside the HTML files. Includes both logo assets and 5 GSC performance screenshots added in the content embed update.
 - **Google Fonts require internet.** The site uses system fallback fonts (`sans-serif`) if offline.
-- **`portfoliov1/` folder** is a local backup — it does not need to be deployed and can be excluded from the repo if desired.
+- **Instagram embeds require internet.** `embed.js` loads from `instagram.com`; reel embeds will show a fallback link if the script fails or the post is deleted/privatised.
+- **Miro embed requires internet and public board access.** If the Miro board is set to "private", the iframe will show a login screen.
+- **Canva embeds require internet and public design access.** Each Canva design must be set to "Anyone with the link can view" for the `?embed` iframe to load. If not, a login screen is shown instead.
+- **`portfoliov1/` and `portfoliov2/` folders** are local backups — they do not need to be deployed and can be excluded from the repo.
+- **`notion-attach/` folder** is a local content source — it does not need to be deployed.
